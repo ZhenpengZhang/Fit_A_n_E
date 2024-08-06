@@ -38,10 +38,10 @@ def fitting_Arrhenius(temperature, lnk):
     avg_err /= len(temperature)
     return lnA, n, E, avg_err
 with open('AnE_fit.txt','w') as f:
-    print('Pressure     ','A     ','n     ','E      ','fitting error',file=f)
+    print('Pressure (atm)       ','A (cm3 mol−1 s−1) or (s-1)      ','n (unitless)           ','E (cal mol-1)            ','fitting error',file=f)
     for feature in selected_features:
         lnA, n, E, avg_err = fitting_Arrhenius(data_X, ln_data_Y[feature])
-        print(feature,math.exp(lnA), f"{n:.3f}", f"{E:.3f}", f"{avg_err:.3f}",file=f)
+        print("{:<15}".format(feature),"{:<15}".format(f"{math.exp(lnA):.3e}"),"{:<15}".format(f"{n:.3f}"),"{:<15}".format(f"{E:.3f}"), "{:<15}".format(f"{avg_err:.3f}"),file=f)
 
 # lnA, n, E, avg_err = fitting_Arrhenius(data_X,ln_data_Y['0.001'])
 # print(math.exp(lnA), n, E, avg_err)
